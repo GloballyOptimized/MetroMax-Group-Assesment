@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'create_shipment' %}">
+        {% csrf_token %}
+        <input type="text" name="origin" placeholder="Origin">
+        <input type="text" name="destination" placeholder="Destination">
+        <input type="date" name="expected_delivery_date" placeholder="Expected Delivery Date">
+        <button type="submit">Create Shipment</button>
+      </form>
+      
+</body>
+</html>

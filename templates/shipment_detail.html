@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Shipment Detail</h1>
+    <p>Origin: {{ shipment.origin }}</p>
+    <p>Destination: {{ shipment.destination }}</p>
+    <p>Expected Delivery Date: {{ shipment.expected_delivery_date }}</p>
+    <p>Actual Delivery Date: {{ shipment.actual_delivery_date }}</p>
+    <p>Status: {{ shipment.status }}</p>
+
+    <h2>Cargo Items</h2>
+    <ul>
+    {% for cargo_item in cargo_items %}
+        <li>{{ cargo_item.name }} - Quantity: {{ cargo_item.quantity }}</li>
+    {% endfor %}
+    </ul>
+
+    <h2>Tracking Information</h2>
+    {% if tracking %}
+    <p>Status: {{ tracking.status }}</p>
+    <p>Location: {{ tracking.location }}</p>
+    {% else %}
+    <p>No tracking information available.</p>
+    {% endif %}
+
+</body>
+</html>

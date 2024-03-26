@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="get" action="{% url 'customer_form' %}">
+        <input type="text" name="account_number" placeholder="Filter by account number" value="{{ account_number }}">
+        <input type="text" name="account_type" placeholder="Filter by account type" value="{{ account_type }}">
+        <button type="submit">Filter</button>
+      </form>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Accounts</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customers %}
+            <tr>
+              <td>{{ customer.name }}</td>
+              <td>{{ customer.address }}</td>
+              <td>{{ customer.phone_number }}</td>
+              <td>{{ customer.email }}</td>
+              <td>
+                <ul>
+                  {% for account in customer.accounts.all %}
+                    <li>{{ account.account_number }} - {{ account.account_type }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="5">No customers found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+</body>
+</html>
